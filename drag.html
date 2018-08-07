@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<!--https://download.csdn.net/download/qq_24484085/10295301-->
+	<head>
+		
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			#drag{
+				width:300px;
+				height:200px;
+				border:1px solid #000;
+				overflow:auto;
+				text-align:center;
+			}
+		</style>
+	</head>
+     
+	<body>
+		<div id="drag">放置数据在这里</div>
+	</body>
+	<script>
+	
+		const drag = document.getElementById('drag');
+		drag.addEventListener('drop',drop,false);
+		drag.addEventListener('dragenter',dragenter);
+		drag.addEventListener('dragover',dragover);
+		function drop(e){
+			e.stopPropagation();
+			e.preventDefault();
+			const files = e.dataTransfer.files;
+			const fr = new FileReader();
+			fr.onload = (e) => {
+				drag.innerText = '';
+				const img = document.createElement('img');
+				img.setAttribute('src',e.target.result);
+				drag.appendChild(img);
+			};
+			fr.readAsDataURL(files[0]);
+			console.log(e.dataTransfer);
+		}
+		/**
+		*  如果不绑定dragenter事件和dragover事件无法阻止默认浏览器默认行为，
+		*/
+		function dragenter(e){
+			e.stopPropagation();
+			e.preventDefault();
+		}
+		/**
+		*  如果不绑定dragenter事件和dragover事件无法阻止默认浏览器默认行为，
+		*/
+		function dragover(e){
+			e.stopPropagation();
+			e.preventDefault();
+		}
+	</script>
+ 
+</html>
