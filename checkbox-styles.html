@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>JS Bin</title>
+  <style type="text/css">
+	input[type=checkbox] {
+		visibility:hidden; 
+	}
+	
+	.sectionStyle{
+		height:200px;
+	}
+  
+	.checkboxOne{
+		width:40px;
+		height:10px;
+		background:#555;
+		margin:20px 80px;
+		position:relative;
+		border-radius:3px;
+	}
+	
+	.checkboxOne label{
+		display:block;
+		width:16px;
+		height:16px;
+		border-radius:50%;
+		
+		-webkit-transition:all .5s ease;
+		-moz-transition:all .5s ease;
+		-o-transition:all .5s ease;
+		-ms-transition:all .5s ease;
+		transition:all .5s ease;
+		cursor:pointer;
+		position:absolute;
+		top:-3px;
+		left:-3px;
+		background:#ccc;
+	}
+	
+	.checkboxOne input[type=checkbox]:checked + label{
+		left:27px;
+	}
+	
+	#demo-input:checked ~ div {
+		display:none;
+	 } 
+	 <!--create the line for the circle o move across-->
+	 .checkboxTwo{
+		position: absolute;
+	 }
+	 .checkboxTwo:before {
+		content: '';
+		position: absolute;
+		top: 19px;
+		left: 14px;
+		height: 2px;
+		width: 90px;
+		background: #111;
+	 }
+	 .checkboxTwo label {
+		display: block;
+		width: 22px;
+		height: 22px;
+		border-radius: 50%;
+ 
+		-webkit-transition: all .5s ease;
+		-moz-transition: all .5s ease;
+		-o-transition: all .5s ease;
+		-ms-transition: all .5s ease;
+		transition: all .5s ease;
+		cursor: pointer;
+		position: absolute;
+		top: 9px;
+		z-index: 1;
+		left: 12px;
+		background: #ddd;
+		}
+		.checkboxTwo input[type=checkbox]:checked + label {
+			left: 84px;
+			background: #26ca28;
+		}
+		
+		/**
+		* Checkbox Three
+		*/
+		.checkboxThree {
+			width: 100px;
+			height: 40px;
+			background: #333;
+			margin: 20px 60px;
+ 
+			border-radius: 50px;
+			position: relative;
+		}
+		.checkboxThree:before{
+			content:'On';
+			position:absolute;
+			top:12px;
+			left:13px;
+			height:2px;
+			color:#26ca28;
+			font-size:16px;
+		}
+		.checkboxThree:after{
+			content:'Off',
+			position:absolute;
+			top:12px;
+			left:84px;
+			height:2px;
+			color:#ddd;
+			font-size:16px;
+		}
+		/**
+			* Create the pill to click
+		*/
+		.checkboxThree label {
+			display: block;
+			width: 32px;
+			height: 22px;
+			border-radius: 50px;
+ 
+			-webkit-transition: all .5s ease;
+			-moz-transition: all .5s ease;
+			-o-transition: all .5s ease;
+			-ms-transition: all .5s ease;
+			transition: all .5s ease;
+			cursor: pointer;
+			position: absolute;
+			top: 9px;
+			z-index: 1;
+			left: 12px;
+			background: #ddd;
+		}
+ 
+		/**
+		* Create the checkbox event for the label
+		*/
+		.checkboxThree input[type=checkbox]:checked + label {
+			left: 60px;
+			background: #26ca28;
+		}
+		<!--第四种checkbox样式设置-->
+		#checkboxFour{
+			width:30px;
+			height:30px;
+			border-radius:50%;
+			background-color:lightgrey;
+			display:flex;
+			flex-direction:row;
+			align-items:center;
+			justify-content:center;
+		}
+		.checkboxFour label {
+			display:block;
+			width:20px;
+			height:20px;
+			border-radius:50%;
+			position:absolute;
+			z-index:1;
+			-webkit-box-shadow:inset 0px 1px 3px rgba(0,0,0,0.5);
+			-moz-box-shadow:inset 0px 1px 3px rgba(0,0,0,0.5);
+			box-shadow:inset 0px 1px 3px rgba(0,0,0,0.5);
+			
+			-webkit-transition:all .5s ease;
+			-moz-transition:all .5s ease;
+			transition:all .5s ease;
+		}
+		.checkboxFour input[type=checkbox]:checked + label {
+			background-color:#26ca28;
+		}
+		<!--浏览器默认样式使用-->
+		.checkboxFive{
+		
+		}
+		.checkboxFive label{
+			display:block;
+			width:30px;
+			height:30px;
+			position:relative;
+			background-color:#ddd;
+		}
+		.checkboxFive label:after{
+			content:'';
+			border-top:3px solid black;
+			border-right:3px solid black;
+			width:20px;
+			position:absolute;
+			height:10px;
+			top:5px;
+			left:3px;
+			opacity:0.3;
+			
+			-wekit-transform:rotate(135deg);
+			-moz-transform:rotate(135deg);
+			-o-transform:rotate(135deg);
+			-ms-transform:rotate(135deg);
+			transform:rotate(135deg);
+		}
+		.checkboxFive input[type=checkbox]:checked + label:after{
+			opacity:1;
+		}
+  </style>
+</head>
+<body>
+<div>
+	演示点击label之后，可以修改input[type=checkbox]的选中状态<br />
+	<label  for="demo-input">label</label>
+	<input id="demo-input" type="checkbox" value="1"/>
+	<div class="demotext">
+		点击上面的label ， 两个字就会出现我这一部分的隐藏和显示
+	</div>
+	<div>
+		使用~将会选中所有毗邻的同级元素，+只会选择第一个同级毗邻元素
+	</div>
+</div>
+
+
+<h3>Checkbox One</h3>
+<div class="checkboxOne">
+<input type="checkbox" value="1" id="checkboxOneInput" name=""/>
+<label for="checkboxOneInput"></label>
+</div>
+
+<section class="sectionStyle">
+  <!-- Checbox Two -->
+  <h3>Checkbox Two</h3>
+  <div class="checkboxTwo" style="position:absolute">
+  <input type="checkbox" value="1" id="checkboxTwoInput" name="" />
+ 	<label for="checkboxTwoInput"></label>
+  </div>
+</section>
+
+<section class="sectionStyle">
+  <!-- Checbox Three -->
+  <h3>Checkbox Three</h3>
+  <div class="checkboxThree">
+  <input type="checkbox" value="1" id="checkboxThreeInput" name="" />
+ 	<label for="checkboxThreeInput"></label>
+  </div>
+</section>
+
+<section class="sectionStyle">
+<h3>Checkbox Four</h3>
+<div class="checkboxFour" id="checkboxFour" style="width:30px;
+			height:30px;
+			border-radius:50%;
+			background-color:lightgrey;
+			display:flex;
+			flex-direction:row;
+			align-items:center;
+			justify-content:center;
+			-webkit-box-shadow:0px 1px 3px rgba(0,0,0,0.5);
+			-moz-box-shadow:0px 1px 3px rgba(0,0,0,0.5);
+			box-shadow:0px 1px 3px rgba(0,0,0,0.5);
+			">
+	<input type="checkbox" value="1" id="checkboxFourInput" name="" />
+	<label for="checkboxFourInput"></label>
+</div>
+</section>
+
+<section class="sectionStyle">
+	<h3>Checkbox Five</h3>
+	<div class="checkboxFive">
+		<input type="checkbox" id="checkboxFiveInput" name="" />
+		<label for="checkboxFiveInput"></label>
+	</div>
+</section>
+
+</body>
+<script type="text/javascript">
+
+	
+</script>
+</html>
